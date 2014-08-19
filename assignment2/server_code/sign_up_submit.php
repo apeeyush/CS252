@@ -29,48 +29,26 @@ else
     /*** if we are here the data is valid and we can insert it into database ***/
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-
-    /*** now we can encrypt the password ***/
     $password = sha1( $password );
-
     include("includes/db-config.php");
+    $con=mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_dbname);
 
-    try
-    {
-        $dbh = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-        /*** $message = a message saying we have connected ***/
-
-        /*** set the error mode to excptions ***/
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        /*** prepare the insert ***/
-        $stmt = $dbh->prepare("INSERT INTO users (username, password ) VALUES (:username, :password )");
-
-        /*** bind the parameters ***/
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR, 40);
-
-        /*** execute the prepared statement ***/
-        $stmt->execute();
-
-        /*** unset the form token session variable ***/
-        unset( $_SESSION['form_token'] );
-
-        /*** if all is done, say thanks ***/
-        $message = 'New user added';
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
-    catch(Exception $e)
-    {
-        /*** check if the username already exists ***/
-        if( $e->getCode() == 23000)
-        {
-            $message = 'Username already exists';
-        }
-        else
-        {
-            /*** if we are here, something has gone wrong with the database ***/
-            $message = 'We are unable to process your request. Please try again later';
-        }
+
+    $select_query = "SELECT * FROM users WHERE username = '$username'";
+    $query = mysqli_query($con, $select_query);
+
+    if(mysqli_num_rows($query) > 0){
+        $message = "Username already exists";
+    }else{
+      $query = "INSERT INTO users (username, password ) VALUES ('$username', '$password')";
+      $result = mysqli_query($con,$query);
+      /*** unset the form token session variable ***/
+      unset( $_SESSION['form_token'] );
+      /*** if all is done, say thanks ***/
+      $message = 'New user added';
     }
 }
 ?>
