@@ -12,6 +12,7 @@
 	<a href="/sign_in.php">Sign In</a><br>
 	<a href="/stats.php">Statistics</a><br>
 	<a href="/sign_out.php">Sign-Out</a>
+	<a href="/upload.html">Upload</a>
 </body>
 
 </html>

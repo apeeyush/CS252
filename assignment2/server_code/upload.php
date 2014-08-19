@@ -1,8 +1,7 @@
 <?php
 	session_start();
-	include("includes/db_config.php");
 	$username=$_SESSION['username'];
-	$upload_dir='home/aditya/';
+	$upload_dir='/home/peeyush/uploads/';
 	$upfile_name=$username."_".$_FILES["file"]["name"];
 	#$con=mysqli_connect($mysql_hostname,$mysql_username,$mysql_password,$mysql_dbname);
 	if(!isset($_SESSION['id'])){
@@ -27,6 +26,13 @@
 			else{
 				if(move_uploaded_file($_FILES["file"]["tmp_name"], $upload_dir.$upfile_name)){
 					$message.="<br> File uploaded successfully.";
+					include("includes/db-config.php");
+					$con=mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_dbname);
+				    if (mysqli_connect_errno()) {
+				        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				    }
+					$query = "INSERT INTO files (username, filename ) VALUES ('$username', '$upfile_name')";
+					$result = mysqli_query($con,$query);
 				}
 				else{
 					$message.="<br> File upload interrupted.";
