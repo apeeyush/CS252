@@ -1,0 +1,11 @@
+use test;
+alter table marks add total int(3) not null after exam;
+alter table marks add grade varchar(2) not null after total;
+update marks set total=assignment+project+exam;
+update marks set grade="A*" where (total*2)/3>=95;
+update marks set grade="A" where (total*2)/3<95 AND (total*2)/3>=80;
+update marks set grade="B" where (total*2)/3<80 AND (total*2)/3>=60;
+update marks set grade="C" where (total*2)/3<60 AND (total*2)/3>=45;
+update marks set grade="D" where (total*2)/3<45 AND (total*2)/3>=30;
+update marks set grade="F" where (total*2)/3<30;
+select course,grade,count(*) as count from marks group by course,grade;
