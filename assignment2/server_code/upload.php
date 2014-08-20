@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	$username=$_SESSION['username'];
-	$upload_dir='/home/peeyush/uploads/';
+	$upload_dir='uploads/';
 	$upfile_name=$username."_".$_FILES["file"]["name"];
 	#$con=mysqli_connect($mysql_hostname,$mysql_username,$mysql_password,$mysql_dbname);
 	if(!isset($_SESSION['id'])){

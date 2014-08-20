@@ -12,10 +12,15 @@ else
     {
         include("includes/db-config.php");
         $username = $_SESSION['username'];
-        if($username == false){
-            $message = 'Access Error';
-        } else {
-            $message = 'Welcome '.$username;
+        if ($username != false){
+            include("includes/db-config.php");
+            $con=mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_dbname);
+            if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            }
+            $query = "SELECT * FROM files WHERE username = '$username'";
+            $result = mysqli_query($con,$query);
+            
         }
     }
     catch (Exception $e)
@@ -31,6 +36,16 @@ else
 <title>Statistics</title>
 </head>
 <body>
-<h2><?php echo $message; ?></h2>
+    <? if ($username == false): ?>
+        <p>Please Log In to see uploaded files</p>
+    <? else: ?>
+        <?php
+            while( $row=mysqli_fetch_array($result) ){
+                echo $row['filename'];
+                echo "<br>";
+            }
+        ?>
+    <? endif; ?>
+
 </body>
 </html>
