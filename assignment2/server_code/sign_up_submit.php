@@ -58,6 +58,7 @@ else
 <title>CS252 Login</title>
 </head>
 <body>
-<p><?php echo $message; ?>
+<p><?php echo $message; ?><br>
+<a href="/sign_in.php">Sign In</a><br>
 </body>
 </html>

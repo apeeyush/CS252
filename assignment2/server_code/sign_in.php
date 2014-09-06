@@ -14,11 +14,14 @@ if(isset( $_SESSION['id'] ))
 </head>
 <body>
 
-	<? if ($message == "User is already signed in"): ?>
+	<?php if (isset( $_SESSION['id'])): ?>
   		<p>User is already signed in!</p>
   		<a href='/sign_out.php'>Sign Out</a>
-	<? else: ?>
-	<h2>Sign In</h2>
+		<br><a href="/stats.php">Statistics</a><br>
+		<a href="/upload.html">Upload</a>
+
+	<?php else: ?>
+		<h2>Sign In</h2>
 		<form action="sign_in_submit.php" method="post">
 			<p>
 				<label for="username">Username</label>
@@ -26,13 +29,13 @@ if(isset( $_SESSION['id'] ))
 			</p>
 			<p>
 				<label for="password">Password</label>
-				<input type="text" id="password" name="password" value="" maxlength="20" />
+				<input type="password" id="password" name="password" value="" maxlength="20" />
 			</p>
 			<p>
 				<input type="submit" value="Sign In" />
 			</p>
 		</form>
-	<? endif; ?>
+	<?php endif; ?>
 
 </body>
 </html>

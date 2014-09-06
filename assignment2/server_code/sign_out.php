@@ -10,11 +10,11 @@ session_start();
 <head>
 </head>
 <body>
-	<? if ($message == "Destroyed"): ?>
+	<?php if ($message == "Destroyed"): ?>
   		<h2>Signed Out Successfully</h2>
   		<a href='/sign_in.php'>Sign In</a>
-	<? else: ?>
+	<?php else: ?>
 		<h2>Error</h2>
-	<? endif; ?>
+	<?php endif; ?>
 </body>
 </html>

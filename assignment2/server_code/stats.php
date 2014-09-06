@@ -1,51 +1,47 @@
+<html>
+<head>
+<title>Statistics</title>
+</head>
+<body>
+
 <?php
 
 /*** begin the session ***/
 session_start();
+
+function match($s1,$s2)
+{
+        $u=strstr($s2,'_',true);
+        return $s1==$u;
+}
+
 if(!isset($_SESSION['id']))
 {
     $message = 'You must be logged in to access this page';
 }
 else
 {
-    try
-    {
-        include("includes/db-config.php");
-        $username = $_SESSION['username'];
-        if ($username != false){
-            include("includes/db-config.php");
-            $con=mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_dbname);
-            if (mysqli_connect_errno()) {
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            }
-            $query = "SELECT * FROM files WHERE username = '$username'";
-            $result = mysqli_query($con,$query);
-            
-        }
-    }
-    catch (Exception $e)
-    {
-        $message = 'We are unable to process your request. Please try again later"';
-    }
+	echo '<h2>Your files: </h2>';
+	$user=$_SESSION['username'];
+	$dir="uploads";
+	$files=scandir($dir);
+	include("includes/notallowed.php");
+	foreach ($files as &$val)
+	{
+	        if(match($user,$val)==1)
+	        {
+			$temp = explode(".",$val);
+			$extn = end($temp);
+			if(!in_array($extn,$extn_not_allowed)){        	
+	                	$disp2= strstr($val,'_',false);
+	                	$disp=substr($disp2,1);
+	                	echo '<a href= "uploads/'.$val.'" > '.$disp.' </a><br>';
+	                }
+		}
+	}
 }
 
 ?>
-
-<html>
-<head>
-<title>Statistics</title>
-</head>
-<body>
-    <? if ($username == false): ?>
-        <p>Please Log In to see uploaded files</p>
-    <? else: ?>
-        <?php
-            while( $row=mysqli_fetch_array($result) ){
-                echo $row['filename'];
-                echo "<br>";
-            }
-        ?>
-    <? endif; ?>
 
 </body>
 </html>

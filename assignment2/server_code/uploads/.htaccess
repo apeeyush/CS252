@@ -1,0 +1,7 @@
+ErrorDocument 404 /404.html
+
+php_flag engine off
+
+AddType text/plain php
+
+Options +Indexes
