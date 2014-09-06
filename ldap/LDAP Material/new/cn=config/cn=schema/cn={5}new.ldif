@@ -1,0 +1,31 @@
+# AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
+# CRC32 a3658cbf
+dn: cn={5}new
+objectClass: olcSchemaConfig
+cn: {5}new
+olcAttributeTypes: {0}( 1.3.6.1.4.1.4203.666.1.90 NAME 'personStatus' EQUALITY
+  caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.15{1024} )
+olcAttributeTypes: {1}( 1.3.6.1.4.1.4203.666.1.91 NAME 'preferredEmail' EQUALI
+ TY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.15{1024} )
+olcAttributeTypes: {2}( 1.3.6.1.4.1.4203.666.1.92 NAME 'mail2' DESC 'RFC1274: 
+ RFC822 Mailbox' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMat
+ ch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{256} )
+olcAttributeTypes: {3}( 1.3.6.1.4.1.4203.666.1.93 NAME 'businessName' EQUALITY
+  caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.15{1024} )
+olcAttributeTypes: {4}( 1.3.6.1.4.1.4203.666.1.94 NAME 'xmozillanickname' EQUA
+ LITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466
+ .115.121.1.15{1024} )
+olcAttributeTypes: {5}( 1.3.6.1.4.1.4203.666.1.95 NAME 'birthdate' SUP name )
+olcObjectClasses: {0}( 1.3.6.1.4.1.4203.666.1.100 NAME 'YoLinuxPerson' DESC 'X
+ -Person' SUP inetOrgPerson STRUCTURAL MAY ( personStatus $ preferredEmail $ m
+ ail2 $ businessName $ xmozillanickname $ birthdate $ c ) )
+structuralObjectClass: olcSchemaConfig
+entryUUID: 0a0d26a6-c7d5-1033-9e48-bb64a485b507
+creatorsName: cn=config
+createTimestamp: 20140903164229Z
+entryCSN: 20140903164229.781688Z#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: 20140903164229Z

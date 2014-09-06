@@ -1,0 +1,48 @@
+# New attribute definitions:
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.90
+        NAME 'cpi'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024} )
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.91
+        NAME 'date'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024} )
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.92
+        NAME 'TelephoneNumber'
+        DESC 'RFC1274: RFC822 Mailbox'
+        EQUALITY caseIgnoreIA5Match
+        SUBSTR caseIgnoreIA5SubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{256} )
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.93
+        NAME 'UserId'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024} )
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.94
+        NAME 'ResourceId'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024} )
+
+attributetype ( 1.3.6.1.4.1.4203.666.1.95
+        NAME 'ResourceName'
+        EQUALITY caseIgnoreMatch
+        SUBSTR caseIgnoreSubstringsMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1024} )
+
+
+objectClass     ( 1.3.6.1.4.1.4203.666.1.100
+    NAME 'Assignment'
+        DESC 'X-Person'
+    SUP inetOrgPerson
+    STRUCTURAL
+        MAY  ( personStatus $ cpi $ date
+        $ TelephoneNumber $ UserId $ ResourceId 
+        $ ResourceName ))

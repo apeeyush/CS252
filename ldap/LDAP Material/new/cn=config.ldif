@@ -1,0 +1,36 @@
+# AUTO-GENERATED FILE - DO NOT EDIT!! Use ldapmodify.
+# CRC32 d24eeaba
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+olcConfigFile: new.conf
+olcConfigDir: /home/vishwesh/Desktop/LDAP/new
+olcAttributeOptions: lang-
+olcAuthzPolicy: none
+olcConcurrency: 0
+olcConnMaxPending: 100
+olcConnMaxPendingAuth: 1000
+olcGentleHUP: FALSE
+olcIdleTimeout: 0
+olcIndexSubstrIfMaxLen: 4
+olcIndexSubstrIfMinLen: 2
+olcIndexSubstrAnyLen: 4
+olcIndexSubstrAnyStep: 2
+olcIndexIntLen: 4
+olcLocalSSF: 71
+olcReadOnly: FALSE
+olcReverseLookup: FALSE
+olcSaslSecProps: noplain,noanonymous
+olcSockbufMaxIncoming: 262143
+olcSockbufMaxIncomingAuth: 16777215
+olcThreads: 16
+olcTLSVerifyClient: never
+olcToolThreads: 1
+olcWriteTimeout: 0
+structuralObjectClass: olcGlobal
+entryUUID: 0a0cd2dc-c7d5-1033-9e41-bb64a485b507
+creatorsName: cn=config
+createTimestamp: 20140903164229Z
+entryCSN: 20140903164229.781688Z#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: 20140903164229Z
