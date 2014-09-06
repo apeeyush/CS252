@@ -2,7 +2,7 @@
 
 session_start();
 /*** check if the users is already logged in ***/
-if(isset( $_SESSION['id'] ))
+if(isset( $_SESSION['id'] ) || isset( $_SESSION['username'] ))
 {
     $message = 'Users is already logged in';
 }
@@ -40,8 +40,10 @@ if ($ds)
     $ldapbind = ldap_bind($ds);
     if ($ldapbind) {
 
-        $username = "cn=admin,dc=test,dc=com";
-        $password = "password";
+        // $username = "cn=admin,dc=test,dc=com";
+        // $password = "password";
+        $username = $_POST['username'].",dc=test,dc=com";
+        $password = $_POST['password'];
 
         // compare value
         $r=ldap_bind($ds, $username, $password);
@@ -51,12 +53,14 @@ if ($ds)
         } elseif ($r === true) {
             $message = "You are now logged in!";
             $_SESSION['username'] = $username;
+            $_SESSION['id'] = '123';
         } elseif ($r === false) {
-            $message = "Password incorrect! Login Failed.";
+            $message = "Username/Password incorrect! Login Failed.";
         }
     }else{
         $message = "Access Denied! Please contact Admin";
     }
+}
 }
 ?>
 
