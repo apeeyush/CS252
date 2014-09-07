@@ -1,0 +1,8 @@
+IndexIgnore *.pdf
+#SSLRequireSSL
+AuthType Basic
+AuthName "My LDAP-Protected Site"
+AuthBasicProvider ldap
+#AuthzLDAPAuthoritative off
+AuthLDAPURL ldap://localhost/ou=root,dc=cse,dc=iitk,dc=ac,dc=in
+Require valid-user

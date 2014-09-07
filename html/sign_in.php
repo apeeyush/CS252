@@ -1,7 +1,7 @@
 <?php
 /*** begin our session ***/
 session_start();
-if( isset($_SESSION['id']) || isset($_SESSION['username']))
+if(isset( $_SESSION['id'] ))
 {
     $message = 'User is already signed in';
 }
@@ -14,7 +14,7 @@ if( isset($_SESSION['id']) || isset($_SESSION['username']))
 </head>
 <body>
 
-	<?php if (isset( $_SESSION['id']) || isset($_SESSION['username'])): ?>
+	<?php if (isset( $_SESSION['id'])): ?>
   		<p>User is already signed in!</p>
   		<a href='/sign_out.php'>Sign Out</a>
 		<br><a href="/stats.php">Statistics</a><br>

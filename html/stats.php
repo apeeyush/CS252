@@ -15,9 +15,9 @@ function match($s1,$s2)
         return $s1==$u;
 }
 
-if ( !(isset($_SESSION['id'])||isset($_SESSION['username'])) )
+if(!isset($_SESSION['id']))
 {
-    echo 'You must be logged in to access this page';
+    $message = 'You must be logged in to access this page';
 }
 else
 {
